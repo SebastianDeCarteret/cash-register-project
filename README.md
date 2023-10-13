@@ -95,12 +95,12 @@ const coins = countCoins(drawer); // Returns 161
 const notes = countNotes(drawer); // Returns 107
 ```
 
-## Level 3: sumDrawer(drawer)
+## Level 3: `sumDrawer(drawer)`
 
-sumDrawer calculates the total value of all money in the drawer.
-Parameter: Accepts a drawer of currency
-Returns the amount of money in drawer as a string formatted in dollars. E.g. “$23.78” not 2378
-Consider using the .toFixed() method
+1. `sumDrawer` calculates the total value of all money in the drawer.
+   - **Parameter**: Accepts a `drawer` of currency
+   - Returns the amount of money in `drawer` as a string formatted in dollars. E.g. “$23.78” not 2378
+   - Consider using the `.toFixed()` [method](https://www.w3schools.com/jsref/jsref_tofixed.asp)
 
 ### Examples
 
@@ -120,11 +120,11 @@ const drawer = [
 const total = sumDrawer(drawer); // Returns '$335.12'
 ```
 
-## Level 4: canMakeAmount(target, drawer)
+## Level 4: `canMakeAmount(target, drawer)`
 
-canMakeAmount returns true if it is possible to make the target amount out of the cash in the drawer and false if it is not possible.
-Parameter: Accepts a target amount of money to try and make and a drawer of currency
-Returns a boolean of whether it is possible to make the amount from the drawer
+1. `canMakeAmount` returns `true` if it is possible to make the `target` amount out of the cash in the `drawer` and `false` if it is not possible.
+   - **Parameter**: Accepts a `target` amount of money to try and make and a `drawer` of currency
+   - Returns a boolean of whether it is possible to make the amount from the drawer
 
 ### Examples
 
@@ -143,17 +143,17 @@ const test1 = canMakeAmount(613, drawer); // Returns false
 const test2 = canMakeAmount(1651, drawer); // Returns true
 ```
 
-## Level 5: transaction(cost, paid, drawer)
+## Level 5: `transaction(cost, paid, drawer)`
 
-transaction works out the amount of change the customer is owed based on the cost of their items and the amount they have paid. The function
-Adds the customer’s paid amount to the drawer
-Removes their change from the drawer
-Returns the new drawer.
-A few structural factors to consider as you create your transaction function:
-Parameters: Accepts the cost of the customers basket, the paid amount that was handed to the cashier, and a drawer of currency.
-Returns the drawer after the transaction has taken place.
-You should assume that the paid amount and the change are given in the largest denominations available
-For example, 2.25 should be a 2 dollar bills and 1 quarter, if they are available, rather than 2 dollar bills and 5 nickels. However, if no quarters and dimes are available you should then use nickels.
+1. `transaction` works out the amount of change the customer is owed based on the cost of their items and the amount they have paid. The function
+   - Adds the customer’s paid amount to the drawer
+   - Removes their change from the drawer
+   - Returns the new drawer.
+2. A few structural factors to consider as you create your transaction function:
+   - **Parameters**: Accepts the `cost` of the customers basket, the `paid` amount that was handed to the cashier, and a `drawer` of currency.
+   - Returns the `drawer` after the transaction has taken place.
+   - You should assume that the paid amount and the change are given in the largest denominations available
+     - For example, 2.25 should be a 2 dollar bills and 1 quarter, if they are available, rather than 2 dollar bills and 5 nickels. However, if no quarters and dimes are available you should then use nickels.
 
 ### Examples
 
