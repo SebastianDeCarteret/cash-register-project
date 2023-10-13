@@ -6,7 +6,7 @@ const notesArr = ["one", "five", "ten", "twenty", "hundred"];
 
 // Level 1: removeItem and addItem
 
-let nameRemove = "penny";
+//let nameRemove = "penny";
 //console.log(removeItem(nameRemove, drawer));
 function removeItem(name, drawer) {
   let objToUse;
@@ -19,7 +19,7 @@ function removeItem(name, drawer) {
   return drawer;
 }
 
-let nameAdd = "nickel";
+//let nameAdd = "nickel";
 //console.log(addItem(nameAdd, drawer));
 function addItem(name, drawer) {
   let objToUse;
@@ -69,19 +69,10 @@ function sumDrawer(drawer) {
 
 // Level 4: canMakeAmount
 
-console.log(
-  canMakeAmount(613, [
-    { name: "penny", value: 1, quantity: 3 },
-    { name: "nickel", value: 5, quantity: 0 },
-    { name: "dime", value: 10, quantity: 1 },
-    { name: "quarter", value: 25, quantity: 3 },
-    { name: "one", value: 100, quantity: 2 },
-    { name: "five", value: 500, quantity: 1 },
-    { name: "ten", value: 1000, quantity: 1 },
-  ])
-);
+//console.log(canMakeAmount(5467, drawer));
 function canMakeAmount(target, drawer) {
-  let copyOfDrawer = JSON.parse(JSON.stringify(drawer)).slice().reverse(); // copy array withouy reference
+  // Copy array with no reference
+  let copyOfDrawer = JSON.parse(JSON.stringify(drawer)).slice().reverse();
   let lastLoopTarget = 0;
   while (target > 0 && lastLoopTarget != target) {
     lastLoopTarget = target;
@@ -96,11 +87,51 @@ function canMakeAmount(target, drawer) {
   }
   return target === 0;
 }
-
 // Level 5: transaction
 
+//console.log(transaction(450, 1000, drawer));
 function transaction(cost, paid, drawer) {
-  // WRITE YOUR CODE HERE
+  // Copy array with no reference
+  let copyOfDrawer = JSON.parse(JSON.stringify(drawer)).slice().reverse();
+  // Loop to add paid amount to drawer(what the customer paid)
+  let targetAdd = paid;
+  let lastLoopTargetAdd = 0;
+  let hasLoopedAdd = false;
+  while (targetAdd > 0 && lastLoopTargetAdd != targetAdd) {
+    lastLoopTargetAdd = targetAdd;
+    copyOfDrawer.forEach((obj) => {
+      if (!hasLoopedAdd) {
+        if (obj.quantity > 0 && targetAdd > 0) {
+          if (targetAdd - obj.value >= 0) {
+            hasLoopedAdd = true;
+            targetAdd -= obj.value;
+            obj.quantity++;
+          }
+        }
+      }
+    });
+    hasLoopedAdd = false;
+  }
+  // Loop to subtract change from drawer(what the customer gets back)
+  let targetSubtract = paid - cost;
+  let lastLoopTargetSubtract = 0;
+  let hasLoopedSubtract = false;
+  while (targetSubtract > 0 && lastLoopTargetSubtract != targetSubtract) {
+    lastLoopTargetSubtract = targetSubtract;
+    copyOfDrawer.forEach((obj) => {
+      if (!hasLoopedSubtract) {
+        if (obj.quantity > 0 && targetSubtract > 0) {
+          if (targetSubtract - obj.value >= 0) {
+            hasLoopedSubtract = true;
+            targetSubtract -= obj.value;
+            obj.quantity--;
+          }
+        }
+      }
+    });
+    hasLoopedSubtract = false;
+  }
+  return copyOfDrawer.reverse();
 }
 
 // FREEZE CODE BEGIN
